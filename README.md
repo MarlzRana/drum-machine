@@ -22,6 +22,10 @@ Libraries used:
 - <a href="https://cdnjs.com/libraries/jquery" target="_blank">jQuery</a>
 - <a href="https://cdnjs.com/libraries/font-awesome" target="_blank">Font Awesome</a>
 
+Preprocessors used:
+
+- <a href="https://sass-lang.com/" target="_blank">SCSS</a>
+
 Test suite:
 
 - <a href="https://github.com/freeCodeCamp/testable-projects-fcc" target="_blank">FCC Testable Projects</a>
