@@ -1,0 +1,180 @@
+//Importing the font
+@import url("https://fonts.googleapis.com/css?family=Russo+One");
+
+//Default base styling
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+//SCSS Variables
+
+//Drum-Pad related
+$background-grey: #8d8d8d;
+$drum-machine-background-grey: #b3b3b3;
+$drum-pad-background-grey: #808080;
+
+//Range/Slider related
+$slider-track-color: #424242;
+
+//SCSS Mixins
+@mixin flex-row {
+  display: flex;
+}
+
+@mixin flex-row-center {
+  @include flex-row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  @include flex-column;
+  justify-content: center;
+  align-items: center;
+}
+//SCSS
+body {
+  @include flex-row-center;
+  background: $background-grey;
+  height: 100vh;
+  font-family: Russo One;
+}
+
+#drum-machine {
+  @include flex-row;
+  background-color: $drum-machine-background-grey;
+  border: 3px solid orange;
+  width: 600px;
+  padding: 5px;
+  aspect-ratio: 2 / 1;
+}
+
+#left-section {
+  display: grid;
+  width: 50%;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+  gap: 10px;
+  > .drum-pad {
+    // @include flex-row-center;
+    background: $drum-pad-background-grey;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px black;
+    width: 100%;
+    height: 100%;
+    font-weight: 800;
+  }
+}
+
+#right-section {
+  @include flex-column-center;
+  width: 50%;
+  > #drum-machine-logo {
+    @include flex-row;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    font-size: 1.5em;
+    > h1,
+    i {
+      font-size: inherit;
+      font-weight: 600;
+    }
+  }
+  > figure {
+    @include flex-column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+    > .selector-title-wrapper {
+      @include flex-column-center;
+      width: 100%;
+      > h2 {
+        font-weight: 500;
+        font-size: 1em;
+      }
+      > .selector {
+        @include flex-row;
+        flex-direction: row-reverse;
+        align-items: center;
+        background: black;
+        width: 17.5%;
+        aspect-ratio: 2 / 1;
+        > .inner-selector {
+          background: blue;
+          width: 42.5%;
+          height: 80%;
+          margin: 0px 2px;
+        }
+      }
+    }
+    > .display-div {
+      @include flex-column-center;
+      background: grey;
+      width: 65%;
+      aspect-ratio: 4 / 1;
+      > p {
+        text-align: center;
+      }
+    }
+
+    > input[type="range"] {
+      -webkit-appearance: none;
+      width: 85%;
+      aspect-ratio: 8/1;
+      background-color: transparent;
+      margin: 10px;
+
+      &:focus {
+        outline: none;
+      }
+
+      @mixin track {
+        background: $slider-track-color;
+        width: 100%;
+        height: 5px;
+        border: 1px solid black;
+        box-shadow: 0px 0px 3px black;
+      }
+
+      @mixin thumb {
+        background: blue;
+        width: 8px;
+        height: 25px;
+        cursor: pointer;
+        margin-top: -10px;
+        border: 1px solid black;
+        box-shadow: 0px 0px 2px black;
+      }
+
+      &::-webkit-slider-runnable-track {
+        @include track;
+        -webkit-appearance: none;
+      }
+
+      &::-moz-range-track,
+      &::-ms-track {
+        @include track;
+      }
+
+      &::-webkit-slider-thumb {
+        @include thumb;
+        -webkit-appearance: none;
+      }
+
+      &::-moz-range-thumb,
+      &::-ms-track {
+        @include thumb;
+      }
+    }
+  }
+}
